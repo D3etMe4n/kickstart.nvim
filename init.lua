@@ -91,7 +91,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -238,6 +238,26 @@ require("lazy").setup({
 	--
 	-- Use `opts = {}` to automatically pass options to a plugin's `setup()` function, forcing the plugin to be loaded.
 	--
+
+	{
+		"romgrk/barbar.nvim",
+		dependencies = {
+			"lewis6991/gitsigns.nvim", -- OPTIONAL: for git status
+			"nvim-tree/nvim-web-devicons", -- OPTIONAL: for file icons
+		},
+		init = function()
+			vim.g.barbar_auto_setup = false
+		end,
+		opts = {
+			-- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
+			-- animation = true,
+			-- insert_at_start = true,
+			-- …etc.
+		},
+		version = "^1.0.0", -- optional: only update when a new 1.x version is released
+	},
+
+	{ "nvim-tree/nvim-web-devicons", opts = {} },
 
 	-- Alternatively, use `config = function() ... end` for full control over the configuration.
 	-- If you prefer to call `setup` explicitly, use:
@@ -463,6 +483,9 @@ require("lazy").setup({
 			},
 		},
 	},
+
+	{ "mfussenegger/nvim-jdtls" },
+
 	{
 		-- Main LSP Configuration
 		"neovim/nvim-lspconfig",
@@ -986,6 +1009,9 @@ require("lazy").setup({
 				"query",
 				"vim",
 				"vimdoc",
+				"java",
+				"rust",
+				"cpp",
 			},
 			-- Autoinstall languages that are not installed
 			auto_install = true,
